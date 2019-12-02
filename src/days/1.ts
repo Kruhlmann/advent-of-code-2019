@@ -21,21 +21,19 @@ function mass_fuel_req_recursive(mass) {
 
 }
 
-get_puzzle_input(1).then((input: string[]) => {
+get_puzzle_input(1).then((input_str_arr: string[]) => {
+    const input = input_str_arr.map((i) => parseInt(i));
+
     // Task 1.
-    let total_fuel_req = 0;
-    for (const mass_str of input) {
-        const mass_num = parseInt(mass_str);
-        total_fuel_req += mass_fuel_req(mass_num);
-    }
+    const total_fuel_req = input.reduce((total, mass) => {
+        return total + mass_fuel_req(mass)
+    });
     console.log(`\tTask 1 answer: ${total_fuel_req}`);
 
     // Task 2.
-    total_fuel_req = 0;
-    for (const mass_str of input) {
-        const mass_num = parseInt(mass_str);
-        total_fuel_req += mass_fuel_req_recursive(mass_num);
-    }
-    console.log(`\tTask 2 answer: ${total_fuel_req}`);
+    const total_fuel_req_recursive = input.reduce((total, mass) => {
+        return total + mass_fuel_req_recursive(mass)
+    });
+    console.log(`\tTask 2 answer: ${total_fuel_req_recursive}`);
 });
 
