@@ -1,0 +1,16 @@
+{
+  "name": "aoc-2019",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "ts-node src/main.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^12.12.14",
+    "request": "^2.88.0",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.2"
+  }
+}
