@@ -36,6 +36,6 @@ get_puzzle_input(1).then((input: string[]) => {
         const mass_num = parseInt(mass_str);
         total_fuel_req += mass_fuel_req_recursive(mass_num);
     }
-    console.log(`\tTask 1 answer: ${total_fuel_req}`);
+    console.log(`\tTask 2 answer: ${total_fuel_req}`);
 });
 
