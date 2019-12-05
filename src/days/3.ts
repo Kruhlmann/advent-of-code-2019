@@ -27,12 +27,18 @@ get_puzzle_input(3).then((input_str_arr: string[]) => {
                     y --;
                 }
                 steps ++;
+
                 if (`${x};${y}` in used_positions) {
-                    if (used_positions[`${x};${y}`] !== w_idx) {
+
+                    if (!(`${w_idx}` in used_positions[`${x};${y}`])) {
+                        used_positions[`${x};${y}`][`${w_idx}`] = steps;
+                    }
+
+                    if (Object.keys(used_positions[`${x};${y}`]).length > 1) {
                         intersections.push({ x, y });
                     }
                 } else {
-                    used_positions[`${x};${y}`] = w_idx;
+                    used_positions[`${x};${y}`] = { [w_idx]: steps };
                 }
             }
         }
@@ -43,6 +49,10 @@ get_puzzle_input(3).then((input_str_arr: string[]) => {
     console.log(`\tTask 1: ${closest_intersection_dist}`)
 
     // Task 2.
-    console.log(`\tTask 2: None`);
+    const closest_intersection_logic = intersections
+        .map((i) => Object.values(used_positions[`${i.x};${i.y}`]).reduce((t: number, p: number) => t + p))
+        .sort((a: number, b: number) => a - b)[0]
+
+    console.log(`\tTask 2: ${closest_intersection_logic}`);
 });
 
