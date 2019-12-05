@@ -13,6 +13,20 @@ get_puzzle_input(4).then((input_str_arr: string[]) => {
         let valid = true;
         valid = valid && (`${candidate}` === candidate.split("").sort().join(""));
         valid = valid && (new Set(candidate.split("")).size !== candidate.length);
+        valid = valid && [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].reduce((r, i) => r + (candidate.includes(`${i}${i}`) ? 1 : 0)) > 0
+
+        if (valid) {
+            valid_pwds ++;
+        }
+    }
+    console.log(`\tTask 1: ${valid_pwds}`)
+
+    valid_pwds = 0;
+    for (const _candidate of password_pool) {
+        const candidate = `${_candidate}`;
+        let valid = true;
+        valid = valid && (`${candidate}` === candidate.split("").sort().join(""));
+        valid = valid && (new Set(candidate.split("")).size !== candidate.length);
         valid = valid && [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].reduce((r, i) => r + (candidate.includes(`${i}${i}`) && !candidate.includes(`${i}${i}${i}`) ? 1 : 0)) > 0
 
         if (valid) {
@@ -20,8 +34,6 @@ get_puzzle_input(4).then((input_str_arr: string[]) => {
         }
     }
 
-    console.log(`\tTask 1: ${valid_pwds}`)
-
-    console.log(`\tTask 2: None`);
+    console.log(`\tTask 2: ${valid_pwds}`)
 });
 
